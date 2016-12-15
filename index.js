@@ -46,7 +46,6 @@ db.once('open', function() {
     console.log('search');
     const id = msg.from.id;
 
-    // Ask user name
     return bot.sendMessage(id, 'Запрос', { ask: 'searchQuery' });
 
   });
@@ -59,9 +58,13 @@ db.once('open', function() {
       .then(results => {
          bot.sendMessage(msg.from.id, 'Найдено предложений: ' + results.length).then(() => {
 
-         results.forEach(item => {
-           bot.sendMessage(msg.from.id, item.title + '\n\n' + item.text + ' ' + item.link);
+         const messagePromises = results.map(item => {
+           return bot.sendMessage(msg.from.id, item.title + '\n\n' + item.text + ' \n\n' + item.url);
+
          });
+
+         Promise.all(messagePromises)
+           .catch(error => console.error(error));
 
         })
            .catch(error => console.error(error));
