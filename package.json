@@ -1,0 +1,20 @@
+{
+  "name": "travelbot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "populateDB": "node populateDB.js",
+    "createService": "node createService.js"
+  },
+  "author": "Aleksei Chernov <kot.lex@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "feedparser": "^1.1.5",
+    "minimist": "^1.2.0",
+    "mongoose": "^4.7.2",
+    "telebot": "^1.0.6"
+  }
+}
