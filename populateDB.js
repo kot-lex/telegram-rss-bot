@@ -19,8 +19,8 @@ function saveMessage(data) {
     title: data.item.title,
     text: data.item.description,
     url: data.item.link,
-    date: data.item.date,
     service: data.service._id,
+    createdAt: new Date()
   })
     .then(
       () => console.log('success'),

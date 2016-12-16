@@ -8,7 +8,8 @@ if (!args.feed) {
 }
 
 models.Service.create({
-  feedUrl: args.feed
+  feedUrl: args.feed,
+  url: args.url,
   })
   .then(data => console.log('Success'))
   .catch(error => console.log('Error', error));

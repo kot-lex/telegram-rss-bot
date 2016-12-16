@@ -30,7 +30,7 @@ const serviceSchema = new Schema({
     default: 'rss'
   },
   messageDate: Date,
-  date: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now }
 });
 
 
@@ -47,7 +47,7 @@ const serviceMessageSchema = new Schema({
     ref: 'Service'
   },
   messageDate: Date,
-  date: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now }
 });
 
 serviceMessageSchema.index({ title: 'text', text: 'text'},  { default_language: "russian" });
@@ -64,6 +64,7 @@ const userSchema = {
     unique: true
   },
   keywords: [String],
+  sendedAt: { type: Date },
   createdAt: { type: Date, default: Date.now }
 
 };

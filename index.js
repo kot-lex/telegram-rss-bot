@@ -1,13 +1,10 @@
-const TeleBot = require('telebot');
-const ask = require('telebot/modules/ask');
 const { db } = require('./db');
 const models = require('./src/model');
 const config = require('./config');
 const createUser = require('./src/createUser');
+const bot = require('./bot');
 
 let currentUser = null;
-const bot = new TeleBot(config.telegramOptions.token);
-bot.use(ask);
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
