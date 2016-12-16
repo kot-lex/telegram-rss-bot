@@ -15,6 +15,7 @@
     "feedparser": "^1.1.5",
     "minimist": "^1.2.0",
     "mongoose": "^4.7.2",
+    "sanitize-html": "^1.13.0",
     "telebot": "^1.0.6"
   }
 }
