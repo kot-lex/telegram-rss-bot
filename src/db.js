@@ -1,6 +1,6 @@
-const models = require('./src/model');
+const models = require('./model');
 const mongoose = require('mongoose');
-const config = require('./config');
+const config = require('./../config');
 
 mongoose.Promise = global.Promise;
 

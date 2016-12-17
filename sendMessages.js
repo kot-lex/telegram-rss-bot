@@ -1,18 +1,27 @@
-const { db, models } = require('./db');
-const bot = require('./bot');
+const { db, models } = require('./src/db');
+const bot = require('./src/initBot');
 const sanitizeHtml = require('sanitize-html');
+const schedule = require('node-schedule');
+const config = require('./config');
 
-models.User.find({ keywords: { $not: {$size: 0} } })
-  .exec()
-  .then(users => {
-    const dealsPromises = users.map(getDeals);
-    return Promise.all(dealsPromises)
-  })
-  .then(sendMessages)
-  .catch(error => console.log(error));
+const scheduled = schedule.scheduleJob(config.sendMessages.cronRule, sendMessages);
 
+function sendMessages() {
+  console.log(new Date() + ' sendMessages started');
 
-function sendMessages(data) {
+  models.User.find({ keywords: { $not: {$size: 0} } })
+    .exec()
+    .then(users => {
+      const dealsPromises = users.map(getDeals);
+      return Promise.all(dealsPromises)
+    })
+    .then(sendDeals)
+    .catch(error => console.log(error));
+
+}
+
+function sendDeals(data) {
+
   const promises = data.map(item => {
     return messagePromises = item.deals.map(deal => {
       const message = sanitizeHtml(deal.title + '\n\n' + deal.text + ' \n\n' + deal.url, {

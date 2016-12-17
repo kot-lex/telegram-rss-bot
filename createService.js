@@ -1,4 +1,4 @@
-const { db, models } = require('./db');
+const { db, models } = require('./src/db');
 
 const args = require('minimist')(process.argv.slice(2));
 

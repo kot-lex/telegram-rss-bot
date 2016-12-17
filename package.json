@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "populateDB": "node populateDB.js",
+    "sendMessages": "node sendMessages.js",
     "createService": "node createService.js"
   },
   "author": "Aleksei Chernov <kot.lex@gmail.com>",
@@ -16,6 +17,7 @@
     "minimist": "^1.2.0",
     "mongoose": "^4.7.2",
     "sanitize-html": "^1.13.0",
-    "telebot": "^1.0.6"
+    "telebot": "^1.0.6",
+    "node-schedule": "^1.2.0"
   }
 }

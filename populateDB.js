@@ -1,18 +1,27 @@
-const { db, models } = require('./db');
+const { db, models } = require('./src/db');
 const request = require('request');
 const FeedParser = require('feedparser');
 const EventEmitter = require('events');
+const schedule = require('node-schedule');
+const config = require('./config');
 
 const feedData = new EventEmitter();
 
+const scheduled = schedule.scheduleJob(config.populateDB.cronRule, () => feedData.emit('scheduledRun'));
+
+feedData.on('scheduledRun', doPopulate);
+
 feedData.on('item', data => saveMessage(data));
 
-models.Service
-  .find({})
-  .exec()
-  .then(data => {
-    data.forEach(item => getFeedData(item, feedData));
-  });
+function doPopulate() {
+  console.log(new Date() + ' doPopulate started');
+  models.Service
+    .find({})
+    .exec()
+    .then(data => {
+      data.forEach(item => getFeedData(item, feedData));
+    });
+}
 
 function saveMessage(data) {
   models.ServiceMessage.create({

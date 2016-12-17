@@ -1,8 +1,8 @@
-const { db } = require('./db');
+const { db } = require('./src/db');
 const models = require('./src/model');
 const config = require('./config');
 const createUser = require('./src/createUser');
-const bot = require('./bot');
+const bot = require('./src/initBot');
 
 let currentUser = null;
 
