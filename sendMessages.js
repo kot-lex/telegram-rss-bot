@@ -33,7 +33,7 @@ function sendMessages(data) {
 
 function getDeals(user) {
   const sended = user.sendedAt;
-  //user.sendedAt = Date.now();
+  user.sendedAt = Date.now();
   user.save();
 
   return models.ServiceMessage.find({
