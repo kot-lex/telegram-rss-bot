@@ -1,0 +1,41 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    depends_on:
+      - mongo
+    networks:
+      - all
+    environment:
+      MONGODB_URI: "mongodb://mongo:27017/bot"
+  send-messages:
+    build:
+      context: .
+      dockerfile: Dockerfile.sendMessages
+    depends_on:
+      - mongo
+    networks:
+      - all
+    environment:
+      MONGODB_URI: "mongodb://mongo:27017/bot"
+  populate-db:
+    build:
+      context: .
+      dockerfile: Dockerfile.populateDB
+    depends_on:
+      - mongo
+    networks:
+      - all
+    environment:
+      MONGODB_URI: "mongodb://mongo:27017/bot"
+  mongo:
+    image: mongo:3
+    volumes:
+    - "./data:/data/db"
+    networks:
+      - all
+
+networks:
+  all:
