@@ -1,3 +1,5 @@
+const models = require('./model');
+
 function createUser(msg) {
   const currentUser = new models.User({
     telegramId: msg.from.id,
