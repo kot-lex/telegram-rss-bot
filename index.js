@@ -9,14 +9,6 @@ let currentUser = null;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function() {
-  //bot.on('/start', msg => {
-  //  const fromId = msg.from.id;
-  //  const username = msg.from.username;
-  //  const reply = msg.message_id;
-  //  return bot.sendMessage(fromId,
-  //    `Привет, ${ username }! \n Я помогу тебе найти дешевые билеты по заданным ключевым словам
-  //    `, { reply });
-  //});
 
   bot.on(['/start', '/back'], msg => {
 
